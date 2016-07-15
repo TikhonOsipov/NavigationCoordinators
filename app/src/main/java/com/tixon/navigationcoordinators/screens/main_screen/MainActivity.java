@@ -1,6 +1,10 @@
 package com.tixon.navigationcoordinators.screens.main_screen;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.tixon.navigationcoordinators.R;
 import com.tixon.navigationcoordinators.dagger.components.DaggerIMainActivityComponent;
@@ -21,6 +25,14 @@ public class MainActivity extends BaseActivity implements IMainView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button button = (Button) findViewById(R.id.buttonMain);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.loginButtonPressed();
+            }
+        });
     }
 
     @Override
@@ -30,5 +42,11 @@ public class MainActivity extends BaseActivity implements IMainView {
                 .mainActivityModule(new MainActivityModule(this))
                 .build();
         component.inject(this);
+        Log.d("myLogs", getClass().getSimpleName() + ": MainCoordinator is null? " + (component.mainCoordinator() == null));
+    }
+
+    @Override
+    public void launchActivity(Class<?> activityClass) {
+        startActivity(new Intent(MainActivity.this, activityClass));
     }
 }

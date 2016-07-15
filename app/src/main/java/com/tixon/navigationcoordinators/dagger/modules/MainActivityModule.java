@@ -1,6 +1,8 @@
 package com.tixon.navigationcoordinators.dagger.modules;
 
 import com.tixon.navigationcoordinators.dagger.scopes.ActivityScope;
+import com.tixon.navigationcoordinators.navigation.main.IMainCoordinator;
+import com.tixon.navigationcoordinators.navigation.main.MainCoordinator;
 import com.tixon.navigationcoordinators.screens.main_screen.IMainPresenter;
 import com.tixon.navigationcoordinators.screens.main_screen.IMainView;
 import com.tixon.navigationcoordinators.screens.main_screen.MainPresenter;
@@ -22,6 +24,12 @@ public class MainActivityModule {
     @Provides
     public IMainView provideView() {
         return view;
+    }
+
+    @Provides
+    @ActivityScope
+    public IMainCoordinator provideCoordinator() {
+        return new MainCoordinator(view);
     }
 
     @Provides

@@ -1,7 +1,9 @@
 package com.tixon.navigationcoordinators.screens.splash_screen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.tixon.navigationcoordinators.R;
 import com.tixon.navigationcoordinators.dagger.components.DaggerISplashActivityComponent;
@@ -33,6 +35,22 @@ public class SplashActivity extends BaseActivity implements ISplashView {
                 .iAppComponent(appComponent)
                 .splashActivityModule(new SplashActivityModule(this))
                 .build();
+        //here presenter is null
         component.inject(this);
+        //here, after injection, presenter is set up and can be put into coordinator
+        if(presenter != null) {
+            Log.d("myLogs", "presenter hashcode: " + presenter.hashCode());
+        }
+
+        //entry point to coordinators
+        //setup AppCoordinator and SplashCoordinator
+        appComponent.appCoordinator()
+                .setCoordinator(component.splashCoordinator())
+                .start();
+    }
+
+    @Override
+    public void launchActivity(Class<?> activityClass) {
+        startActivity(new Intent(SplashActivity.this, activityClass));
     }
 }

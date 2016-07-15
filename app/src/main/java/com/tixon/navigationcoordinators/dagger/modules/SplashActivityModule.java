@@ -1,6 +1,8 @@
 package com.tixon.navigationcoordinators.dagger.modules;
 
 import com.tixon.navigationcoordinators.dagger.scopes.ActivityScope;
+import com.tixon.navigationcoordinators.navigation.splash.ISplashCoordinator;
+import com.tixon.navigationcoordinators.navigation.splash.SplashCoordinator;
 import com.tixon.navigationcoordinators.screens.splash_screen.ISplashPresenter;
 import com.tixon.navigationcoordinators.screens.splash_screen.ISplashView;
 import com.tixon.navigationcoordinators.screens.splash_screen.SplashPresenter;
@@ -22,6 +24,12 @@ public class SplashActivityModule {
     @Provides
     public ISplashView provideView() {
         return view;
+    }
+
+    @Provides
+    @ActivityScope
+    public ISplashCoordinator provideCoordinator() {
+        return new SplashCoordinator(view);
     }
 
     @Provides

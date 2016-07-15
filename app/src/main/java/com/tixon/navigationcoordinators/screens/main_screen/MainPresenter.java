@@ -12,4 +12,9 @@ public class MainPresenter implements IMainPresenter {
     public MainPresenter(IMainView view) {
         this.view = view;
     }
+
+    @Override
+    public void loginButtonPressed() {
+
+    }
 }
