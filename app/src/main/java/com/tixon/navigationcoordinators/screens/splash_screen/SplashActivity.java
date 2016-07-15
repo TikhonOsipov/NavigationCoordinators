@@ -3,6 +3,7 @@ package com.tixon.navigationcoordinators.screens.splash_screen;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.tixon.navigationcoordinators.R;
 import com.tixon.navigationcoordinators.dagger.components.DaggerISplashActivityComponent;
 import com.tixon.navigationcoordinators.dagger.components.IAppComponent;
 import com.tixon.navigationcoordinators.dagger.components.ISplashActivityComponent;
@@ -23,6 +24,7 @@ public class SplashActivity extends BaseActivity implements ISplashView {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
     }
 
     @Override
